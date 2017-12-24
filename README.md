@@ -22,7 +22,7 @@ Chromeでの動作は未確認ですが、難しいことはしていないので最新版なら動作すると思い
 
 ## インストール
 
-[GreasyFork](https://greasyfork.org/ja/scripts/36639-futaba-form-image-previewer)　[GitHub](https://github.com/akoya-tomo/futaba_form_image_previewer/raw/master/futaba_form_image_previewer.user.js)  
+[GreasyFork](https://greasyfork.org/ja/scripts/36659-futaba-form-image-previewer)　[GitHub](https://github.com/akoya-tomo/futaba_form_image_previewer/raw/master/futaba_form_image_previewer.user.js)  
 
 ## 注意事項
 * バージョン表記の通り開発途中なので環境によっては不具合発生の可能性があります。  
