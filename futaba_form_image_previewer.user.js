@@ -69,24 +69,25 @@ this.$ = this.jQuery = jQuery.noConflict(true);
 		// アップロードするファイルを選択
 		$("#upfile").change(function() {
 			var file = $(this).prop('files')[0];
-
-			// 画像以外は処理を停止
 			console.log("futaba form image previewer : file.type = " + file.type);
-			if (file.type.match("webm")) {
-				$("#preview").html("");
-				return;
-			}
-			if (! file.type.match("image.*") && ! file.type.match("webm")) {
+
+			var tag = "";
+			if (file.type.match("image.*")) {
+				tag = "<img style='max-width:250px; max-height:250px;'>";
+			} else if (file.type.match("webm")) {
+				tag = "<video style='max-width:250px; max-height:250px;'>";
+			// 画像とWebM以外は処理を停止
+			} else {
 				// クリア
 				$(this).val("");
 				$("#preview").html("");
 				return;
 			}
 
-			// 画像表示
+			// プレビュー表示
 			var reader = new FileReader();
 			reader.onload = function() {
-				var img_src = $("<img style='max-width:250px; max-height:250px;'>").attr("src", reader.result);
+				var img_src = $(tag).attr("src", reader.result);
 				$("#preview").html(img_src);
 			};
 			reader.readAsDataURL(file);
