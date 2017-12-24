@@ -71,7 +71,12 @@ this.$ = this.jQuery = jQuery.noConflict(true);
 			var file = $(this).prop('files')[0];
 
 			// 画像以外は処理を停止
-			if (! file.type.match("image.*")) {
+			console.log("futaba form image previewer : file.type = " + file.type);
+			if (file.type.match("webm")) {
+				$("#preview").html("");
+				return;
+			}
+			if (! file.type.match("image.*") && ! file.type.match("webm")) {
 				// クリア
 				$(this).val("");
 				$("#preview").html("");
