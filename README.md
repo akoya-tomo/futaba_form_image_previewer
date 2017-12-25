@@ -12,7 +12,7 @@ Chromeでの動作は未確認ですが、難しいことはしていないので最新版にTampermonkeyを先
 ## 想定動作環境
 * Firefox 57以上  
 
-以下はインストールしていても本スクリプトが問題無く動作することをことを確認しています。  
+以下はアドオンやユーザースクリプトはインストールしていても本スクリプトが問題無く動作することをことを確認しています。  
 （本スクリプト自体はFirefoxとTampermonkeyがあれば動作します）  
 
 * [KOSHIAN](https://addons.mozilla.org/ja/firefox/user/anonymous-a0bba9187b568f98732d22d51c5955a6/)アドオン及びその[派生版](https://github.com/akoya-tomo/futaba_auto_reloader_K/wiki)  
