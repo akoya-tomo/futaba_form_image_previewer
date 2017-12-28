@@ -8,7 +8,7 @@
 // @include        http://*.2chan.net/*/futaba.htm
 // @include        https://*.2chan.net/*/futaba.htm
 // @require        http://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js
-// @version        0.2.0
+// @version        0.3.0
 // @grant          GM_addStyle
 // @license        MIT
 // ==/UserScript==
@@ -19,7 +19,7 @@ this.$ = this.jQuery = jQuery.noConflict(true);
 	 *	設定
 	 */
 	var PREVIEW_MIN_SIZE = 0;		//ファイル未選択時のドロップエリアの高さ（単位:px）（0で非表示）
-	var PREVIEW_MAX_SIZE = 250;		//プレビュー最大サイズ（単位:px）（最大250px）
+	var PREVIEW_MAX_SIZE = 250;		//プレビュー最大サイズ（単位:px）（最大250）
 	var WEBM_AUTOPLAY = true;		//WebMのプレビューを自動再生する（true = 自動再生する : false = 自動再生しない）
 	var WEBM_LOOP = true;			//WebMのプレビューをループ再生する（true = ループ再生する : false = ループ再生しない）
 
