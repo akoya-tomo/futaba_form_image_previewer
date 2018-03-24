@@ -5,7 +5,7 @@ Firefoxの場合、[Tampermonkey](https://addons.mozilla.org/ja/firefox/addon/tamper
 （GreasemonkeyやViolentmonkeyでの動作は未確認です）  
 Chromeの場合、[Tampermonkey](https://chrome.google.com/webstore/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo)を先にインスールしてからスクリプトをインストールして下さい。  
 
-※他のUserscriptやFirefoxアドオン[KOSHIAN](https://addons.mozilla.org/ja/firefox/user/anonymous-a0bba9187b568f98732d22d51c5955a6/)の派生版は[こちら](https://github.com/akoya-tomo/futaba_auto_reloader_K/wiki)の一覧からどうぞ。  
+※他のUserscriptやFirefoxアドオン[KOSHIAN](https://addons.mozilla.org/ja/firefox/user/anonymous-a0bba9187b568f98732d22d51c5955a6/)の改変版は[こちら](https://github.com/akoya-tomo/futaba_auto_reloader_K/wiki)の一覧からどうぞ。  
 
 ## 使い方
 * ふたばのレス画面の返信フォームの添付ファイルを選択すると自動でプレビューが表示されます。  
@@ -43,6 +43,8 @@ Chromeの場合、[Tampermonkey](https://chrome.google.com/webstore/detail/tampermon
 * 添付ファイルのコピーペーストは実験で貼り付け送信出来ましたが、送信できるファイルに制限があったので別の手段をテスト中です。  
 
 ## 更新履歴
+* v0.3.1 2018-03-24
+  - KOSHIAN フォーム拡張アドオンと併用すると誤動作する不具合修正
 * v0.3.0 2017-12-28
   - 添付ファイルのドロップエリアの設定に対応  
   - WebMプレビューの自動再生とループ再生に対応  
