@@ -11,6 +11,7 @@
 // @version        0.3.0
 // @grant          GM_addStyle
 // @license        MIT
+// @noframes
 // ==/UserScript==
 this.$ = this.jQuery = jQuery.noConflict(true);
 
