@@ -8,9 +8,10 @@
 // @include        http://*.2chan.net/*/futaba.htm
 // @include        https://*.2chan.net/*/futaba.htm
 // @require        http://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js
-// @version        0.3.0
+// @version        0.3.1
 // @grant          GM_addStyle
 // @license        MIT
+// @noframes
 // ==/UserScript==
 this.$ = this.jQuery = jQuery.noConflict(true);
 
