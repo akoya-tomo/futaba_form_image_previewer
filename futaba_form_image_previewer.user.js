@@ -8,7 +8,7 @@
 // @include        http://*.2chan.net/*/futaba.htm
 // @include        https://*.2chan.net/*/futaba.htm
 // @require        http://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js
-// @version        0.3.1
+// @version        0.4.0
 // @grant          GM_addStyle
 // @license        MIT
 // @noframes
@@ -95,7 +95,7 @@ this.$ = this.jQuery = jQuery.noConflict(true);
 			var previewTag = "";
 			if (fileType[0] == "image") {
 				previewTag = "<img id='ffip_preview' class='ffip-preview'></img>";
-			} else if (fileType[1] == "webm") {
+			} else if (fileType[1] == "webm" || fileType[1] == "mp4") {
 				previewTag = "<video id='ffip_preview' class='ffip-preview' muted" + webmAutoplay + webmLoop + "></video>";
 			// 画像とWebM以外は処理を停止
 			} else {
@@ -114,7 +114,7 @@ this.$ = this.jQuery = jQuery.noConflict(true);
 			$("#ffip_preview").replaceWith(previewTag);
 
 			// WebMの幅と高さ取得
-			if (fileType[1] == "webm") {
+			if (fileType[1] == "webm" || fileType[1] == "mp4") {
 				var video = $("#ffip_preview")[0];
 				// メタデータ読み込み完了
 				video.addEventListener("loadedmetadata",function (e){
