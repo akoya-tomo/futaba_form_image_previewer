@@ -5,7 +5,7 @@ Firefoxの場合、[Tampermonkey](https://addons.mozilla.org/ja/firefox/addon/tamper
 （GreasemonkeyやViolentmonkeyでの動作は未確認です）  
 Chromeの場合、[Tampermonkey](https://chrome.google.com/webstore/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo)を先にインスールしてからスクリプトをインストールして下さい。  
 
-※他のUserscriptやFirefoxアドオン[KOSHIAN](https://addons.mozilla.org/ja/firefox/user/anonymous-a0bba9187b568f98732d22d51c5955a6/)の改変版は[こちら](https://github.com/akoya-tomo/futaba_auto_reloader_K/wiki)の一覧からどうぞ。  
+※他のUserscriptやFirefoxアドオン[こしあん](https://addons.mozilla.org/ja/firefox/user/anonymous-a0bba9187b568f98732d22d51c5955a6/)の改変版は[こちら](https://github.com/akoya-tomo/futaba_auto_reloader_K/wiki)の一覧からどうぞ。  
 
 ## 使い方
 * ふたばのレス画面の返信フォームの添付ファイルを選択すると自動でプレビューが表示されます。  
