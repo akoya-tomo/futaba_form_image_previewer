@@ -19,13 +19,15 @@ this.$ = this.jQuery = jQuery.noConflict(true);
 	/*
 	 *	設定
 	 */
-	var PREVIEW_MIN_SIZE = 0;		//ファイル未選択時のドロップエリアの高さ（単位:px）（0で非表示）
+	var DROP_AREA_SIZE = 0;			//ファイル未選択時のドロップエリアの高さ（単位:px）（0で非表示）
 	var PREVIEW_MAX_SIZE = 250;		//プレビュー最大サイズ（単位:px）（最大250）
 	var WEBM_AUTOPLAY = true;		//WebMのプレビューを自動再生する（true = 自動再生する : false = 自動再生しない）
 	var WEBM_LOOP = true;			//WebMのプレビューをループ再生する（true = ループ再生する : false = ループ再生しない）
+	var DROP_AREA_STYLE = "background-color:#f2f2f2; border:2px #eeaa88 solid; border-radius: 8px;";	//ドロップエリアのスタイル指定
 
 	var fileNameWidth = 190;
-	var previewBorderStyle = (PREVIEW_MIN_SIZE > 0 ? "border:2px deepskyblue solid;" : "");
+	var dropAreaStyle = (DROP_AREA_SIZE > 0 ? DROP_AREA_STYLE : "");
+	var dropAreaText = (DROP_AREA_SIZE >= 12 ? "ここにドロップ" : "");
 	var inputButtonText = "参照...";
 	var inputFilenameText = "ファイルが選択されていません。";
 	var fileType,fileSize;
@@ -33,6 +35,7 @@ this.$ = this.jQuery = jQuery.noConflict(true);
 	var imgHeight = 0;
 	var webmAutoplay = (WEBM_AUTOPLAY ? " autoplay" : "");
 	var webmLoop = (WEBM_LOOP ? " loop" : "");
+	var previewMaxSize = Math.min(PREVIEW_MAX_SIZE, 250);
 
 	setInputButtonText();
 	setStyle();
@@ -48,7 +51,7 @@ this.$ = this.jQuery = jQuery.noConflict(true);
 			    "<div id='ffip_button' class='ffip-button'>" + inputButtonText + "</div>" +
 			    "<div id='ffip_filename' class='ffip-filename'>" + inputFilenameText + "</div>" +
 			  "</div>" +
-			  "<div id='ffip_preview' class='ffip-preview'></div>" +
+			  "<div id='ffip_preview' class='ffip-droparea'>" + dropAreaText + "</div>" +
 			  "<div id='ffip_file_info' class='ffip-file-info'></div>" +
 			  "<input type='file' id='ffip_upfile' class='ffip-upfile' name='upfile'>"+
 			"</div>";
@@ -77,7 +80,7 @@ this.$ = this.jQuery = jQuery.noConflict(true);
 	 */
 	function clearFile() {
 		$("#ffip_upfile").val("");
-		$("#ffip_preview").replaceWith("<div id='ffip_preview' class='ffip-preview'></div>");
+		$("#ffip_preview").replaceWith("<div id='ffip_preview' class='ffip-droparea'>" + dropAreaText + "</div>");
 		$("#ffip_file_info").empty();
 		$("#ffip_filename").text(inputFilenameText);
 		imgWidth =0;
@@ -209,11 +212,10 @@ this.$ = this.jQuery = jQuery.noConflict(true);
 			"}" +
 			//ファイルプレビュー
 			".ffip-preview{" +
-			"  min-width:" + PREVIEW_MIN_SIZE + "px;" +
-			"  min-height:" + PREVIEW_MIN_SIZE + "px;" +
-			"  max-width:" + PREVIEW_MAX_SIZE + "px;" +
-			"  max-height:" + PREVIEW_MAX_SIZE + "px;" +
-			   previewBorderStyle +
+			"  min-width:0px;" +
+			"  min-height:0px;" +
+			"  max-width:" + previewMaxSize + "px;" +
+			"  max-height:" + previewMaxSize + "px;" +
 			"}" +
 			//ファイル入力本体（透明）
 			".ffip-upfile{" +
@@ -237,6 +239,17 @@ this.$ = this.jQuery = jQuery.noConflict(true);
 			".ffip-file-info{" +
 			"  font-size:12px;" +
 			"  white-space: nowrap;" +
+			"}" +
+			//ドロップエリア
+			".ffip-droparea{" +
+			"  display:inline-block;" +
+			"  min-width:250px;" +
+			"  max-width:250px;" +
+			"  min-height:" + DROP_AREA_SIZE + "px;" +
+			"  font-size:12px;" +
+			"  text-align:center;" +
+			"  line-height:" + DROP_AREA_SIZE + "px;" +
+			dropAreaStyle +
 			"}";
 		GM_addStyle(css);
 	}
