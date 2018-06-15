@@ -109,9 +109,12 @@ this.$ = this.jQuery = jQuery.noConflict(true);
 			fileSize = file.size;
 
 			// filenameの表示幅を計算
-			var buttonWidth = $("#ffip_button").outerWidth(true);
-			fileNameWidth = Math.max(250 - buttonWidth,50);
-			setFileNameStyle();
+			if (fileNameWidth) {
+				var buttonWidth = $("#ffip_button").outerWidth(true);
+				fileNameWidth = Math.max(250 - buttonWidth,50);
+				setFileNameStyle();
+				fileNameWidth = 0;
+			}
 
 			$("#ffip_filename").text(file.name);
 			$("#ffip_preview").replaceWith(previewTag);
