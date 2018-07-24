@@ -46,16 +46,17 @@ this.$ = this.jQuery = jQuery.noConflict(true);
 	 *ボタン設定
 	 */
 	function makeButton() {
-		var inputFileButton =
-			"<div id='ffip_input_file' class='ffip-input-file'>" +
-			  "<div id='ffip_input_file_view' class='ffip-input-file-view'>" +
-			    "<div id='ffip_button' class='ffip-button'>" + inputButtonText + "</div>" +
-			    "<div id='ffip_filename' class='ffip-filename'>" + inputFilenameText + "</div>" +
-			  "</div>" +
-			  "<div id='ffip_preview' class='ffip-droparea'>" + dropAreaText + "</div>" +
-			  "<div id='ffip_file_info' class='ffip-file-info'></div>" +
-			  "<input type='file' id='ffip_upfile' class='ffip-upfile' name='upfile'>"+
-			"</div>";
+		var $inputFile = $("<div>", {
+			id: "ffip_input_file",
+			class: "ffip-input-file",
+		});
+		var inputFileView =
+			"<div id='ffip_input_file_view' class='ffip-input-file-view'>" +
+				"<div id='ffip_button' class='ffip-button'>" + inputButtonText + "</div>" +
+				"<div id='ffip_filename' class='ffip-filename'>" + inputFilenameText + "</div>" +
+			"</div>" +
+			"<div id='ffip_preview' class='ffip-droparea'>" + dropAreaText + "</div>" +
+			"<div id='ffip_file_info' class='ffip-file-info'></div>";
 		var $fileClearButton = $("<div>", {
 			id: "ffip_file_clear",
 			class: "ffip-file-clear",
@@ -64,12 +65,17 @@ this.$ = this.jQuery = jQuery.noConflict(true);
 				clearFile();
 			}
 		});
-		var $upfileTd = $(".ftdc b:contains('添付File')").parent("td").next("td");
+		var $upfile = $("form input[name='upfile']");
+		var $upfileTd = $upfile.parent("td");
 
-		if (!$upfileTd.length) return;
+		if (!$upfile.length || !$upfileTd.length) return;
 
-		$upfileTd.empty();
-		$upfileTd.append(inputFileButton);
+		$upfileTd.contents().filter(function() {
+			return this.nodeType === Node.TEXT_NODE || this.nodeName != "INPUT";
+		}).remove();
+		$upfile.attr("id", "ffip_upfile").addClass("ffip-upfile");
+		$upfile.wrap($inputFile);
+		$upfile.before(inputFileView);
 		$("#ffip_filename").after($fileClearButton);
 
 		preview();
