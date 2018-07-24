@@ -5,16 +5,18 @@ Firefoxの場合、[Tampermonkey](https://addons.mozilla.org/ja/firefox/addon/tamper
 （GreasemonkeyやViolentmonkeyでの動作は未確認です）  
 Chromeの場合、[Tampermonkey](https://chrome.google.com/webstore/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo)を先にインスールしてからスクリプトをインストールして下さい。  
 
-※他のUserscriptやFirefoxアドオン[こしあん](https://addons.mozilla.org/ja/firefox/user/anonymous-a0bba9187b568f98732d22d51c5955a6/)の改変版は[こちら](https://github.com/akoya-tomo/futaba_auto_reloader_K/wiki)の一覧からどうぞ。  
+※他のふたば閲覧支援ツールは[こちら](https://github.com/akoya-tomo/futaba_auto_reloader_K/wiki)。  
 
 ## 使い方
 * ふたばのレス画面の返信フォームの添付ファイルを選択すると自動でプレビューが表示されます。  
 （最大表示サイズ：250px×250px）  
+![スクリーンショット](images/screenshot01.png "スクリーンショット")   
 * ［クリア」ボタンを押すと添付ファイルが消去され、プレビューも消えます。  
 * [KOSHIAN 返信フォーム拡張](https://addons.mozilla.org/ja/firefox/addon/koshian-%E8%BF%94%E4%BF%A1%E3%83%95%E3%82%A9%E3%83%BC%E3%83%A0%E6%8B%A1%E5%BC%B5/)使用時にレス送信後添付ファイルが残るときはクリアボタンで消去できるので便利です。  
   （[KOSHIAN 返信フォーム拡張 改](https://github.com/akoya-tomo/koshian_form_futaba_kai/)は送信後添付ファイルをクリアするように修正されています）
 * 添付ファイルのドロップエリアの設定に対応しました。  
   通常は添付ファイルのボタン（Firefoxは「参照...」・Chromeは「ファイルを選択」）とその横のファイル名の表示欄がドロップ可能な範囲です。高さが狭くてドロップしにくいときは後述の設定でドロップエリアを拡大することが可能です。  
+![スクリーンショット](images/screenshot02.png "スクリーンショット")   
 * WebMとmp4のプレビュー表示で自動再生とループ再生が設定可能です。  
 * プレビューのに下に添付ファイルの縦横サイズ・ファイルサイズ・ファイルタイプが表示されます。  
 
@@ -43,6 +45,8 @@ Chromeの場合、[Tampermonkey](https://chrome.google.com/webstore/detail/tampermon
 * WebMとmp4のプレビューは手動で再生を制御することはできません。また無音での自動再生となります。  
 
 ## 更新履歴
+* v0.4.2 2018-07-25
+  - [KOSHIAN フォーム拡張 改](https://github.com/akoya-tomo/koshian_form_futaba_kai/) v0.2.0rc1以降に対応
 * v0.4.1 2018-06-15
   - ドロップエリア設定時にプレビューの縦横比が崩れることがある不具合を修正
   - ドロップエリアのスタイル変更及びスタイルの設定を追加
