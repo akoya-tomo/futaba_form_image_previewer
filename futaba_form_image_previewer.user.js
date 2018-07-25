@@ -155,6 +155,11 @@ this.$ = this.jQuery = jQuery.noConflict(true);
 				image.src = URL.createObjectURL(file);
 			}
 		});
+		// ページ読み込み時にファイルが既にあればchangeイベントを発火させる
+		if ($("#ffip_upfile")[0].files[0]) {
+			fileNameWidth = 0;	// ファイル選択ボタンの表示幅取得に失敗するのでfilenameの表示幅計算を無効にする
+			$("#ffip_upfile").change(); 
+		}
 	}
 
 	/*
