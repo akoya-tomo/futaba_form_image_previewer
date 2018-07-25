@@ -19,12 +19,12 @@ this.$ = this.jQuery = jQuery.noConflict(true);
 	/*
 	 *	設定
 	 */
-	var DROP_AREA_SIZE = 0;			//ファイル未選択時のドロップエリアの高さ（単位:px）（0で非表示）
-	var PREVIEW_MAX_SIZE = 250;		//プレビュー最大サイズ（単位:px）（最大250）
-	var WEBM_AUTOPLAY = true;		//WebMのプレビューを自動再生する（true = 自動再生する : false = 自動再生しない）
-	var WEBM_LOOP = true;			//WebMのプレビューをループ再生する（true = ループ再生する : false = ループ再生しない）
-	var DROP_AREA_STYLE = "background-color:#f2f2f2; border:2px #eeaa88 solid; border-radius: 8px;";	//ドロップエリアのスタイル指定
-	//var DROP_AREA_STYLE = "background-color:#f2f2f2; border:2px #eeaa88 solid; border-radius: 8px;";	//スタイルのデフォルト設定
+	var DROP_AREA_SIZE = 0;			// ファイル未選択時のドロップエリアの高さ（単位:px）（0で非表示）
+	var PREVIEW_MAX_SIZE = 250;		// プレビュー最大サイズ（単位:px）（最大250）
+	var WEBM_AUTOPLAY = true;		// WebMのプレビューを自動再生する（true = 自動再生する : false = 自動再生しない）
+	var WEBM_LOOP = true;			// WebMのプレビューをループ再生する（true = ループ再生する : false = ループ再生しない）
+	var DROP_AREA_STYLE = "background-color:#f2f2f2; border:2px #eeaa88 solid; border-radius: 8px;";	// ドロップエリアのスタイル指定
+	//var DROP_AREA_STYLE = "background-color:#f2f2f2; border:2px #eeaa88 solid; border-radius: 8px;";	// スタイルのデフォルト設定
 
 	var fileNameWidth = 190;
 	var dropAreaStyle = (DROP_AREA_SIZE > 0 ? DROP_AREA_STYLE : "");
@@ -43,7 +43,7 @@ this.$ = this.jQuery = jQuery.noConflict(true);
 	makeButton();
 
 	/*
-	 *ボタン設定
+	 * ボタン設定
 	 */
 	function makeButton() {
 		var $inputFile = $("<div>", {
@@ -66,12 +66,13 @@ this.$ = this.jQuery = jQuery.noConflict(true);
 			}
 		});
 		var $upfile = $("form input[name='upfile']");
-		var $upfileTd = $upfile.parent("td");
+		if (!$upfile.length) return;
 
-		if (!$upfile.length || !$upfileTd.length) return;
+		var $upfileTd = $upfile.parent("td");
+		if (!$upfileTd.length) return;
 
 		$upfileTd.contents().filter(function() {
-			return this.nodeType === Node.TEXT_NODE || this.nodeName != "INPUT";
+			return this.nodeName != "INPUT";
 		}).remove();
 		$upfile.attr("id", "ffip_upfile").addClass("ffip-upfile");
 		$upfile.wrap($inputFile);
@@ -83,7 +84,7 @@ this.$ = this.jQuery = jQuery.noConflict(true);
 	}
 
 	/*
-	 *入力ファイルクリア
+	 * 入力ファイルクリア
 	 */
 	function clearFile() {
 		$("#ffip_upfile").val("");
@@ -95,7 +96,7 @@ this.$ = this.jQuery = jQuery.noConflict(true);
 	}
 
 	/*
-	 *プレビュー表示
+	 * プレビュー表示
 	 */
 	function preview(){
 		// アップロードするファイルを選択
@@ -107,7 +108,7 @@ this.$ = this.jQuery = jQuery.noConflict(true);
 				previewTag = "<img id='ffip_preview' class='ffip-preview'></img>";
 			} else if (fileType[1] == "webm" || fileType[1] == "mp4") {
 				previewTag = "<video id='ffip_preview' class='ffip-preview' muted" + webmAutoplay + webmLoop + "></video>";
-			// 画像とWebM以外は処理を停止
+			// 画像とWebM･mp4以外は処理を中止
 			} else {
 				clearFile();
 				return;
@@ -163,7 +164,7 @@ this.$ = this.jQuery = jQuery.noConflict(true);
 	}
 
 	/*
-	 *ファイル情報表示
+	 * ファイル情報表示
 	 */
 	function fileInformation() {
 		$("#ffip_file_info").empty();
@@ -180,11 +181,11 @@ this.$ = this.jQuery = jQuery.noConflict(true);
 	}
 
 	/*
-	 *入力ボタン文字列設定
+	 * 入力ボタン文字列設定
 	 */
 	function setInputButtonText() {
 		var agent = window.navigator.userAgent.toLowerCase();
-		//Chrome
+		// Chrome
 		if (agent.indexOf("chrome") > -1){
 			inputButtonText = "ファイルを選択";
 			inputFilenameText = "選択されていません";
@@ -193,21 +194,21 @@ this.$ = this.jQuery = jQuery.noConflict(true);
 	}
 
 	/*
-	 *スタイル設定
+	 * スタイル設定
 	 */
 	function setStyle() {
 		var css =
-			//ファイル入力全体
+			// ファイル入力全体
 			".ffip-input-file{" +
 			"  position:relative;" +
 			"}" +
-			//ファイル入力表示
+			// ファイル入力表示
 			".ffip-input-file-view{" +
 			"  padding: 1px 0px;" +
 			"  font-size: 13px;" +
 			"  white-space: nowrap;" +
 			"}" +
-			//ファイル入力ボタン（ダミー）
+			// ファイル入力ボタン（ダミー）
 			".ffip-button{" +
 			"  display:inline-block;" +
 			"  margin-right:6px;" +
@@ -216,7 +217,7 @@ this.$ = this.jQuery = jQuery.noConflict(true);
 			"  background-color:#e1e1e1;" +
 			"  color:black;" +
 			"}" +
-			//ファイル入力名
+			// ファイル入力名
 			".ffip-filename{" +
 			"  display:inline-block;" +
 			"  width:" + fileNameWidth + "px;" +
@@ -225,14 +226,14 @@ this.$ = this.jQuery = jQuery.noConflict(true);
 			"  overflow: hidden;" +
 			"  text-overflow: ellipsis;" +
 			"}" +
-			//ファイルプレビュー
+			// ファイルプレビュー
 			".ffip-preview{" +
 			"  min-width:0px;" +
 			"  min-height:0px;" +
 			"  max-width:" + previewMaxSize + "px;" +
 			"  max-height:" + previewMaxSize + "px;" +
 			"}" +
-			//ファイル入力本体（透明）
+			// ファイル入力本体（透明）
 			".ffip-upfile{" +
 			"  position:absolute;" +
 			"  width:100%;" +
@@ -242,7 +243,7 @@ this.$ = this.jQuery = jQuery.noConflict(true);
 			"  opacity:0;" +
 			"  cursor:pointer;" +
 			"}" +
-			//クリアボタン
+			// クリアボタン
 			".ffip-file-clear{" +
 			"  display:inline-block;" +
 			"  margin-left:5px;" +
@@ -250,12 +251,12 @@ this.$ = this.jQuery = jQuery.noConflict(true);
 			"  white-space: nowrap;" +
 			"  cursor:pointer;" +
 			"}" +
-			//ファイル情報
+			// ファイル情報
 			".ffip-file-info{" +
 			"  font-size:12px;" +
 			"  white-space: nowrap;" +
 			"}" +
-			//ドロップエリア
+			// ドロップエリア
 			".ffip-droparea{" +
 			"  display:inline-block;" +
 			"  min-width:250px;" +
@@ -270,7 +271,7 @@ this.$ = this.jQuery = jQuery.noConflict(true);
 	}
 
 	/*
-	 *ファイル名スタイル設定
+	 * ファイル名スタイル設定
 	 */
 	function setFileNameStyle() {
 		var fileNameCss =
