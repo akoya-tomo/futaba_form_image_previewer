@@ -74,7 +74,7 @@ this.$ = this.jQuery = jQuery.noConflict(true);
 		$upfileTd.contents().filter(function() {
 			return this.nodeName != "INPUT";
 		}).remove();
-		$upfile.attr("id", "ffip_upfile").addClass("ffip-upfile");
+		$upfile.attr("id", "ffip_upfile").addClass("ffip-upfile").attr("autocomplete", "nope");	// リロード時の添付ファイル復活を抑止
 		$upfile.wrap($inputFile);
 		$upfile.before(inputFileView);
 		$("#ffip_filename").after($fileClearButton);
