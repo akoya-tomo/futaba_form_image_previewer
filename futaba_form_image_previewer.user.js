@@ -68,12 +68,17 @@ this.$ = this.jQuery = jQuery.noConflict(true);
 		var $upfile = $("form input[name='upfile']");
 		if (!$upfile.length) return;
 
-		var $upfileTd = $upfile.parent("td");
+		var $upfileTd = $upfile.closest("td");
 		if (!$upfileTd.length) return;
 
 		$upfileTd.contents().filter(function() {
 			return this.nodeName != "INPUT";
 		}).remove();
+		if (!$("form input[name='upfile']").length) {
+			// ふたクロ
+			$upfile = $upfile.clone();
+			$upfileTd.append($upfile);
+		}
 		$upfile.attr("id", "ffip_upfile").addClass("ffip-upfile").attr("autocomplete", "nope");	// リロード時の添付ファイル復活を抑止
 		$upfile.wrap($inputFile);
 		$upfile.before(inputFileView);
