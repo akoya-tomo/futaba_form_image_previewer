@@ -26,7 +26,6 @@ this.$ = this.jQuery = jQuery.noConflict(true);
 	var DROP_AREA_STYLE = "background-color:#f2f2f2; border:2px #eeaa88 solid; border-radius: 8px;";	// ドロップエリアのスタイル指定
 	//var DROP_AREA_STYLE = "background-color:#f2f2f2; border:2px #eeaa88 solid; border-radius: 8px;";	// スタイルのデフォルト設定
 
-	var fileNameWidth = 190;
 	var dropAreaStyle = (DROP_AREA_SIZE > 0 ? DROP_AREA_STYLE : "");
 	var dropAreaText = (DROP_AREA_SIZE >= 12 ? "ここにドロップ" : "");
 	var inputButtonText = "参照...";
@@ -52,8 +51,10 @@ this.$ = this.jQuery = jQuery.noConflict(true);
 		});
 		var inputFileView =
 			"<div id='ffip_input_file_view' class='ffip-input-file-view'>" +
-				"<div id='ffip_button' class='ffip-button'>" + inputButtonText + "</div>" +
-				"<div id='ffip_filename' class='ffip-filename'>" + inputFilenameText + "</div>" +
+				"<div id='ffip_input_file_container' class='ffip-input-file-container'>" +
+					"<div id='ffip_button' class='ffip-button'>" + inputButtonText + "</div>" +
+					"<div id='ffip_filename' class='ffip-filename'>" + inputFilenameText + "</div>" +
+				"</div>" +
 			"</div>" +
 			"<div id='ffip_preview' class='ffip-droparea'>" + dropAreaText + "</div>" +
 			"<div id='ffip_file_info' class='ffip-file-info'></div>";
@@ -82,7 +83,7 @@ this.$ = this.jQuery = jQuery.noConflict(true);
 		$upfile.attr("id", "ffip_upfile").addClass("ffip-upfile").attr("autocomplete", "nope");	// リロード時の添付ファイル復活を抑止
 		$upfile.wrap($inputFile);
 		$upfile.before(inputFileView);
-		$("#ffip_filename").after($fileClearButton);
+		$("#ffip_input_file_container").after($fileClearButton);
 
 		preview();
 
@@ -121,14 +122,6 @@ this.$ = this.jQuery = jQuery.noConflict(true);
 
 			fileSize = file.size;
 
-			// filenameの表示幅を計算
-			if (fileNameWidth) {
-				var buttonWidth = $("#ffip_button").outerWidth(true);
-				fileNameWidth = Math.max(250 - buttonWidth,50);
-				setFileNameStyle();
-				fileNameWidth = 0;
-			}
-
 			$("#ffip_filename").text(file.name);
 			$("#ffip_preview").replaceWith(previewTag);
 
@@ -163,7 +156,6 @@ this.$ = this.jQuery = jQuery.noConflict(true);
 		});
 		// ページ読み込み時にファイルが既にあればchangeイベントを発火させる
 		if ($("#ffip_upfile")[0].files[0]) {
-			fileNameWidth = 0;	// ファイル選択ボタンの表示幅取得に失敗するのでfilenameの表示幅計算を無効にする
 			$("#ffip_upfile").change(); 
 		}
 	}
@@ -194,7 +186,6 @@ this.$ = this.jQuery = jQuery.noConflict(true);
 		if (agent.indexOf("chrome") > -1){
 			inputButtonText = "ファイルを選択";
 			inputFilenameText = "選択されていません";
-			fileNameWidth = 133;
 		}
 	}
 
@@ -207,15 +198,20 @@ this.$ = this.jQuery = jQuery.noConflict(true);
 			".ffip-input-file{" +
 			"  position:relative;" +
 			"}" +
-			// ファイル入力表示
+			// ファイル入力表示欄
 			".ffip-input-file-view{" +
+			"  display: flex;" +
 			"  padding: 1px 0px;" +
 			"  font-size: 13px;" +
 			"  white-space: nowrap;" +
 			"}" +
+			// ファイル入力枠
+			".ffip-input-file-container{" +
+			"  display: flex;" +
+			"  width: 250px;" +
+			"}" +
 			// ファイル入力ボタン（ダミー）
 			".ffip-button{" +
-			"  display:inline-block;" +
 			"  margin-right:6px;" +
 			"  padding:1px 9px;" +
 			"  border:1px solid #adadad;" +
@@ -224,8 +220,6 @@ this.$ = this.jQuery = jQuery.noConflict(true);
 			"}" +
 			// ファイル入力名
 			".ffip-filename{" +
-			"  display:inline-block;" +
-			"  width:" + fileNameWidth + "px;" +
 			"  font-size:12px;" +
 			"  vertical-align:middle;" +
 			"  overflow: hidden;" +
@@ -273,17 +267,6 @@ this.$ = this.jQuery = jQuery.noConflict(true);
 			dropAreaStyle +
 			"}";
 		GM_addStyle(css);
-	}
-
-	/*
-	 * ファイル名スタイル設定
-	 */
-	function setFileNameStyle() {
-		var fileNameCss =
-			".ffip-filename{" +
-			"  width:" + fileNameWidth + "px;" +
-			"}";
-		GM_addStyle(fileNameCss);
 	}
 
 })(jQuery);
