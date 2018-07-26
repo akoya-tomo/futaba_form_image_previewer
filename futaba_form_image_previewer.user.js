@@ -30,9 +30,6 @@ this.$ = this.jQuery = jQuery.noConflict(true);
 	var dropAreaText = (DROP_AREA_SIZE >= 12 ? "ここにドロップ" : "");
 	var inputButtonText = "参照...";
 	var inputFilenameText = "ファイルが選択されていません。";
-	var fileType,fileSize;
-	var imgWidth = 0;
-	var imgHeight = 0;
 	var webmAutoplay = (WEBM_AUTOPLAY ? " autoplay" : "");
 	var webmLoop = (WEBM_LOOP ? " loop" : "");
 	var previewMaxSize = Math.min(PREVIEW_MAX_SIZE, 250);
@@ -97,8 +94,6 @@ this.$ = this.jQuery = jQuery.noConflict(true);
 		$("#ffip_preview").replaceWith("<div id='ffip_preview' class='ffip-droparea'>" + dropAreaText + "</div>");
 		$("#ffip_file_info").empty();
 		$("#ffip_filename").text(inputFilenameText);
-		imgWidth =0;
-		imgHeight =0;
 	}
 
 	/*
@@ -108,8 +103,8 @@ this.$ = this.jQuery = jQuery.noConflict(true);
 		// アップロードするファイルを選択
 		$("#ffip_upfile").change(function() {
 			var file = $(this).prop("files")[0];
-			fileType = file.type.split("/");
-			var previewTag = "";
+			var fileType = file.type.split("/");
+			var previewTag, imgWidth, imgHeight;
 			if (fileType[0] == "image") {
 				previewTag = "<img id='ffip_preview' class='ffip-preview'></img>";
 			} else if (fileType[1] == "webm" || fileType[1] == "mp4") {
@@ -119,8 +114,6 @@ this.$ = this.jQuery = jQuery.noConflict(true);
 				clearFile();
 				return;
 			}
-
-			fileSize = file.size;
 
 			$("#ffip_filename").text(file.name);
 			$("#ffip_preview").replaceWith(previewTag);
@@ -153,28 +146,27 @@ this.$ = this.jQuery = jQuery.noConflict(true);
 				};
 				image.src = URL.createObjectURL(file);
 			}
+
+			/*
+			 * ファイル情報表示
+			 */
+			function fileInformation() {
+				$("#ffip_file_info").empty();
+
+				var imgSizeTag = "<span class='ffip-img-size'> " + imgWidth + "×" + imgHeight + "</span>／";
+				var fileSizeSep = ("" + file.size).replace(/(\d)(?=(\d\d\d)+$)/g, "$1,");
+				var fileSizeTag = "<span class='ffip-file-size'>" + fileSizeSep + "byte</span>／";
+				var fileTypeTag = "<span class='ffip-file-type'>" + fileType[1] + "</span>";
+
+				$("#ffip_file_info").append(imgSizeTag);
+				$("#ffip_file_info").append(fileSizeTag);
+				$("#ffip_file_info").append(fileTypeTag);
+			}
 		});
 		// ページ読み込み時にファイルが既にあればchangeイベントを発火させる
 		if ($("#ffip_upfile")[0].files[0]) {
 			$("#ffip_upfile").change(); 
 		}
-	}
-
-	/*
-	 * ファイル情報表示
-	 */
-	function fileInformation() {
-		$("#ffip_file_info").empty();
-
-		var imgSizeTag = "<span class='ffip-img-size'> " + imgWidth + "×" + imgHeight + "</span>／";
-		$("#ffip_file_info").append(imgSizeTag);
-
-		var fileSizeSep = ("" + fileSize).replace(/(\d)(?=(\d\d\d)+$)/g, "$1,");
-		var fileSizeTag = "<span class='ffip-file-size'>" + fileSizeSep + "byte</span>／";
-		$("#ffip_file_info").append(fileSizeTag);
-
-		var fileTypeTag = "<span class='ffip-file-type'>" + fileType[1] + "</span>";
-		$("#ffip_file_info").append(fileTypeTag);
 	}
 
 	/*
