@@ -1,9 +1,11 @@
 ## futaba form image previewer
 このUserscriptはふたば☆ちゃんねるの返信フォームの添付ファイル欄に添付ファイルのプレビューとクリアボタンを追加するものです。添付ファイルの確認や間違って添付したファイルをクリアするのに役に立ちます。  
 
-Firefoxの場合、[Tampermonkey](https://addons.mozilla.org/ja/firefox/addon/tampermonkey/)を先にインスールしてからスクリプトをインストールして下さい。  
+Firefoxは[Tampermonkey](https://addons.mozilla.org/ja/firefox/addon/tampermonkey/)を先にインスールしてからスクリプトをインストールして下さい。  
 （GreasemonkeyやViolentmonkeyでの動作は未確認です）  
-Chromeの場合、[Tampermonkey](https://chrome.google.com/webstore/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo)を先にインスールしてからスクリプトをインストールして下さい。  
+Chromeは[Tampermonkey](https://chrome.google.com/webstore/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo)を先にインスールしてからスクリプトをインストールして下さい。  
+
+※Firefoxは、このスクリプトの代わりにほぼ同機能でクリップボード内の画像ファイルの添付機能が追加された[**KOSHIAN 返信フォーム拡張 改**](https://github.com/akoya-tomo/koshian_form_futaba_kai/)アドオンの使用を推奨します。  
 
 ※他のふたば閲覧支援ツールは[こちら](https://github.com/akoya-tomo/futaba_auto_reloader_K/wiki)。  
 
@@ -41,6 +43,7 @@ Chromeの場合、[Tampermonkey](https://chrome.google.com/webstore/detail/tampermon
 * バージョン表記の通り開発途中なので環境によっては不具合発生の可能性があります。  
 * Firefoxでファイルを添付した状態でページをリロードをすると、その後ファイルをクリアしてもリロードするとファイルが添付された状態に戻ることがあります。  
 * [KOSHIAN 返信フォームを固定](https://addons.mozilla.org/ja/firefox/addon/koshian-float-form/)使用時にファイル添付すると設定によってはフォーカスが外れて返信フォームが閉じることがあります。再度フォームを開けばファイルは添付された状態です。  
+  （[KOSHIAN 返信フォームを固定 改](https://github.com/akoya-tomo/koshian_float_form_kai/)は返信フォームが閉じないように修正されています）  
 * プレビューの上にファイルをドロップするとドロップしたファイルが新しい添付ファイルとなります。（ドロップエリアと同じ扱い）
 * ドロップエリアの設定の対応の影響で添付ファイルボタンの表示がマウスオーバーで反応しません。  
 * WebMとmp4のプレビューは手動で再生を制御することはできません。また無音での自動再生となります。  
@@ -51,7 +54,7 @@ Chromeの場合、[Tampermonkey](https://chrome.google.com/webstore/detail/tampermon
   - Firefoxにおいて添付ファイルをクリアした後でリロードすると、ファイルが添付された状態に戻る現象を抑制
   - ふたクロでv0.4.2が動作しない不具合を修正
 * v0.4.2 2018-07-25
-  - [KOSHIAN フォーム拡張 改](https://github.com/akoya-tomo/koshian_form_futaba_kai/) v0.2.0rc1以降に対応
+  - [KOSHIAN 返信フォーム拡張 改](https://github.com/akoya-tomo/koshian_form_futaba_kai/) v0.2.0rc1以降に対応
 * v0.4.1 2018-06-15
   - ドロップエリア設定時にプレビューの縦横比が崩れることがある不具合を修正
   - ドロップエリアのスタイル変更及びスタイルの設定を追加
