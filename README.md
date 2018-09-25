@@ -5,7 +5,7 @@ Firefoxは[Tampermonkey](https://addons.mozilla.org/ja/firefox/addon/tampermonkey
 （GreasemonkeyやViolentmonkeyでの動作は未確認です）  
 Chromeは[Tampermonkey](https://chrome.google.com/webstore/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo)を先にインスールしてからスクリプトをインストールして下さい。  
 
-※Firefoxは、このスクリプトの代わりにほぼ同機能でクリップボード内の画像ファイルの添付機能が追加された[**KOSHIAN 返信フォーム拡張 改**](https://github.com/akoya-tomo/koshian_form_futaba_kai/)アドオンの使用を推奨します。  
+※FirefoxでKOSHIAN（改）アドオンを使用している環境では、このスクリプトの代わりにほぼ同機能でクリップボード内の画像ファイルの添付機能が追加された[**KOSHIAN 返信フォーム拡張 改**](https://github.com/akoya-tomo/koshian_form_futaba_kai/)アドオンの使用を推奨します。  
 
 ※他のふたば閲覧支援ツールは[こちら](https://github.com/akoya-tomo/futaba_auto_reloader_K/wiki)。  
 
