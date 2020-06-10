@@ -13,6 +13,8 @@
 // @license        MIT
 // @noframes
 // ==/UserScript==
+/* globals jQuery */
+
 this.$ = this.jQuery = jQuery.noConflict(true);
 
 (function ($) {
