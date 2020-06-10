@@ -8,11 +8,13 @@
 // @include        http://*.2chan.net/*/futaba.htm
 // @include        https://*.2chan.net/*/futaba.htm
 // @require        http://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js
-// @version        0.4.3
+// @version        0.4.4
 // @grant          GM_addStyle
 // @license        MIT
 // @noframes
 // ==/UserScript==
+/* globals jQuery */
+
 this.$ = this.jQuery = jQuery.noConflict(true);
 
 (function ($) {
@@ -26,12 +28,12 @@ this.$ = this.jQuery = jQuery.noConflict(true);
 	var DROP_AREA_STYLE = "background-color:#f2f2f2; border:2px #eeaa88 solid; border-radius: 8px;";	// ドロップエリアのスタイル指定
 	//var DROP_AREA_STYLE = "background-color:#f2f2f2; border:2px #eeaa88 solid; border-radius: 8px;";	// スタイルのデフォルト設定
 
-	var dropAreaStyle = (DROP_AREA_SIZE > 0 ? DROP_AREA_STYLE : "");
-	var dropAreaText = (DROP_AREA_SIZE >= 12 ? "ここにドロップ" : "");
+	var dropAreaStyle = DROP_AREA_SIZE > 0 ? DROP_AREA_STYLE : "";
+	var dropAreaText = DROP_AREA_SIZE >= 12 ? "ここにドロップ" : "";
 	var inputButtonText = "参照...";
 	var inputFilenameText = "ファイルが選択されていません。";
-	var webmAutoplay = (WEBM_AUTOPLAY ? " autoplay" : "");
-	var webmLoop = (WEBM_LOOP ? " loop" : "");
+	var webmAutoplay = WEBM_AUTOPLAY ? " autoplay" : "";
+	var webmLoop = WEBM_LOOP ? " loop" : "";
 	var previewMaxSize = Math.min(PREVIEW_MAX_SIZE, 250);
 
 	setInputButtonText();
@@ -120,11 +122,21 @@ this.$ = this.jQuery = jQuery.noConflict(true);
 
 			// WebMの幅と高さ取得
 			if (fileType[1] == "webm" || fileType[1] == "mp4") {
-				var video = $("#ffip_preview")[0];
+				var $video = $("#ffip_preview");
 				// メタデータ読み込み完了
-				video.addEventListener("loadedmetadata",function (e){
-					imgWidth = video.videoWidth;
-					imgHeight = video.videoHeight;
+				$video.on("loadedmetadata", function() {
+					imgWidth = $video[0].videoWidth;
+					imgHeight = $video[0].videoHeight;
+					fileInformation();
+				});
+			}
+
+			// 画像の幅と高さ取得
+			if (fileType[0] == "image") {
+				var $image = $("#ffip_preview");
+				$image.on("load", function() {
+					imgWidth = $image[0].naturalWidth;
+					imgHeight = $image[0].naturalHeight;
 					fileInformation();
 				});
 			}
@@ -132,20 +144,9 @@ this.$ = this.jQuery = jQuery.noConflict(true);
 			// プレビュー表示
 			var reader = new FileReader();
 			reader.onload = function() {
-				$("#ffip_preview").attr("src",reader.result);
+				$("#ffip_preview").attr("src", reader.result);
 			};
 			reader.readAsDataURL(file);
-
-			// 画像の幅と高さ取得
-			if (fileType[0] == "image") {
-				var image = new Image();
-				image.onload = function() {
-					imgWidth = image.naturalWidth;
-					imgHeight = image.naturalHeight;
-					fileInformation();
-				};
-				image.src = URL.createObjectURL(file);
-			}
 
 			/*
 			 * ファイル情報表示
