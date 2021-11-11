@@ -5,6 +5,8 @@ Firefoxは[Tampermonkey](https://addons.mozilla.org/ja/firefox/addon/tampermonkey
 （GreasemonkeyやViolentmonkeyでの動作は未確認です）  
 Chromeは[Tampermonkey](https://chrome.google.com/webstore/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo)を先にインスールしてからスクリプトをインストールして下さい。  
 
+※**このUserscriptはv0.4.4をもちまして開発を終了しました。**
+
 ※FirefoxでKOSHIAN（改）アドオンを使用している環境では、このスクリプトの代わりにほぼ同機能でクリップボード内の画像ファイルの添付機能が追加された[**KOSHIAN 返信フォーム拡張 改**](https://github.com/akoya-tomo/koshian_form_futaba_kai/)アドオンの使用を推奨します。  
 
 ※他のふたば閲覧支援ツールは[こちら](https://github.com/akoya-tomo/futaba_auto_reloader_K/wiki)。  
@@ -24,7 +26,7 @@ Chromeは[Tampermonkey](https://chrome.google.com/webstore/detail/tampermonkey/dh
 
 ## インストール
 
-[GreasyFork](https://greasyfork.org/ja/scripts/36659-futaba-form-image-previewer)　[GitHub](https://github.com/akoya-tomo/futaba_form_image_previewer/raw/master/futaba_form_image_previewer.user.js)  
+[GitHub](https://github.com/akoya-tomo/futaba_form_image_previewer/raw/master/futaba_form_image_previewer.user.js)  
 
 ## 設定
 機能の動作はスクリプト冒頭の大文字変数をエディタで編集すれば変更することができます。  
